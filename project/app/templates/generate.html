@@ -1,0 +1,94 @@
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>app</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    
+</head>
+
+
+<style>
+
+body {
+    background-image: url("{% static 'fun.jpg'%}") ;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin-top: 140px;
+    font-family: 'Courier New', Courier, monospace;
+    }
+
+
+.cont{
+    background-color:rgba(0, 101, 253, 0.418);
+    border-radius: 20px;
+   
+    border:none;
+  
+
+    
+}
+.generate{
+background-color: rgba(26, 26, 255, 0.459);
+border-radius: 30px;
+}
+
+.bars{
+border-radius: 20px;
+background-color: rgba(255, 255, 255, 0.521);
+padding-top: 10px;
+font-size: 15px;
+
+}
+.heading{
+ color: rgb(255, 255, 255);
+  margin-top: -60px;
+  font-weight: bold;
+  font-family: monospace;
+}
+.text-small
+{
+  font-size: small;
+  font-family:  'Courier New', Courier, monospace;
+
+  
+}
+</style>
+
+
+<body>
+
+      <h1 class="container d-flex justify-content-center pt-0 heading">e_crypt</h1>
+      
+  <div>
+      
+    <form class="container mt-5 pt-5 border pb-5 px-4 cont" method="post" enctype="multipart/form-data">
+      {%csrf_token%}  
+      <div class="form-group mb-3">
+          <label for="exampleInputEmail1" class="mx-3" style="font-weight: bold; color: rgb(255, 255, 255);">Username</label>
+          <input type="text" class="form-control bars px-3" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username" name="username">
+          <small id="emailHelp" class="form-text text-muted mx-3 text-small ">We'll never share your username or password with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1" class="mx-3" style="font-weight: bold; color: rgb(255, 255, 255);">Password</label>
+          <input type="text" class="form-control mb-4 bars px-3" id="exampleInputPassword1" placeholder="Password" value="{{created}}">
+        </div>
+        
+        <button type="submit" class="btn btn-primary generate" style="font-weight: bold;">Generate</button>
+       
+      </form>
+      <a class="btn btn-primary generate d-flex justify-content-center container " style="font-weight: bold; border:none; vertical-align: middle;"
+      href="{%url 'logout_user'%}">Logout</a>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign_in</title>
+    
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<style>
+  body {
+      background-image: url("{% static 'peakpx.jpg'%}") ;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100vh;
+      
+      }
+  
+  .full-height {
+       height: 100vh;}
+  .custom-rounded {
+       border-radius: 11px !important; 
+       box-shadow:6px 2px 13px rgba(0, 0, 0, 0.137),2px 2px 6px  rgba(255, 255, 255, 0.315) inset
+    ;
+    
+        }
+  .register-button{
+      border: solid rgba(255, 255, 255, 0.863) 1.5px;
+      background-color: rgba(255, 255, 255, 0);
+      color: rgba(255, 255, 255, 0.863);
+      border-radius: 5px;
+      font-size: 13.5px;
+      margin-bottom: 10px;
+      font-weight: 500;
+  } 
+  .login-button{
+    
+      background-color: rgba(71, 90, 255, 0.637);
+      color: rgb(255, 255, 255);
+      border-radius: 5px;
+      font-size: 13.5px;
+      font-weight: 500;
+      box-shadow: -15px 0px 30px rgba(1, 1, 75, 0.192) inset;
+  }
+  
+  .search{
+      border-radius: 3px;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.521);
+      
+   
+  }
+  .search::placeholder {
+      font-size: 13px; 
+  
+    }
+  
+  .color-main{
+      background-color: rgba(32, 9, 238, 0.199);
+  }
+  
+  .text-above-email{
+      padding-bottom: 0px;
+      margin-bottom: -.95px;
+      font-size: 13.5px;
+      margin-top: 13px;
+      font-weight: 600;
+  
+  }
+  .text-above-password{
+      padding-bottom: 0px;
+      font-size: 13.5px;
+      margin-top: 5px;
+      font-weight: 600;
+  
+  }
+  .text-edit{
+      font-size: 13.5px;
+  }
+  .input-field {
+    
+      border: none;
+      
+      transition: background-color 0.3s, opacity 0.3s; 
+    }
+  
+    .input-field:focus {
+      outline: none; 
+      background-color: #f0f0f0; 
+      opacity: 0.7; 
+      
+    }
+  
+  .link{
+      font-size: 12px;
+    
+      color: rgb(36, 36, 36);
+      margin-top: 2px;
+  }
+  .alert-fixed {
+    position: absolute;
+    border-radius: 30px;
+    z-index: 1050; 
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 47, 255, 0.342);
+    border: none;
+    color: rgba(255, 255, 255, 0.856);
+    
+}
+
+
+  .nohover-change:hover {
+    color: rgba(0, 0, 0, 0.863);
+    text-decoration: none; 
+}
+.text_data{
+  font-size: 25px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 900;
+  
+}
+.close_button {
+    
+    padding: 0;
+    border: none; 
+    
+   
+ 
+  }
+  .close_button:focus,
+  .close_button:active {
+    outline: none; 
+    box-shadow: none; 
+  }
+  </style>
+<body>
+
+{%if messages%}
+{%for message in messages%}
+<div class="alert  alert-dismissible fade show alert-fixed " role="alert">
+ <strong>{{message}}</strong>
+ <button type="button" class="btn-close border-none close_button" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{%endfor%}
+{%endif%}
+    <form class="container pt-3  pb-4  d-flex justify-content-center align-items-center  full-height" method="post" enctype="multipart/form-data">
+      {% csrf_token %}  
+      <div class=" pt-4 px-3 custom-rounded color-main" >
+            <h1 class="display-4 text_data ml-3">Sign up</h1>
+            <div>
+              <label for="inputEmail3" class="d-flex justify-content-start mx-3 text-above-email test  ">Your username</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control search input-field "  id="inputEmail3" placeholder="Enter your username" name="username" value="{{instance.username}}">
+              </div>
+            </div>
+          
+        <div>
+          <label for="inputEmail3" class="d-flex justify-content-start mx-3 text-above-email test  ">Your email</label>
+          <div class="col-sm-12">
+            <input type="text" class="form-control search input-field "  id="inputEmail3" placeholder="Enter your email" name="email" value="{{instance.email}}">
+          </div>
+        </div>
+        <div >
+          <label for="inputPassword3" class="col-sm-2 col-form-label text-above-password" >Password</label>
+          
+          
+          <div class="col-sm-12 pb-2">
+            <input type="password" class="form-control search input-field"  id="inputPassword3" placeholder="Enter your password" name="password_one" >
+          </div>
+         
+        </div>
+        <div >
+            <label for="inputPassword" class="d-flex justify-content-start mx-3 text-above-email test ">Confirm Password</label>
+            
+             
+            <div class="col-sm-12 ">
+              <input type="password" class="form-control search input-field" id="inputPassword" placeholder="Enter your password" name="password_two" >
+            </div>
+           
+          </div>
+          <p><a class="link-opacity-50-hover d-flex justify-content-end px-3 link nohover-change"  href="{% url 'login_page'%}">Already have an account?</a></p>
+
+        <div>
+       
+          <div class="col-sm-12 pb-5 ">
+            <button type="submit" class="btn w-100 login-button">Sign up</button>
+          </div>
+        </div>
+
+        
+        </div>
+      </form>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+</head>
+<style>
+
+body{
+    background-image: url("{%static 'some.jpg'%}");
+    font-family: monospace;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    
+   
+}
+.link{
+   
+    color: white;
+    background-color: rgba(255, 255, 255, 0);
+    font-size: larger;
+    font-family: 'Courier New', Courier, monospace;
+    border: white 2px solid;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.in{
+    text-decoration: none;
+    color: white;
+    
+}
+.in:hover{
+    color: rgba(255, 255, 255, 0.836);
+    border-color:rgba(255, 255, 255, 0.836) ;
+}
+.seac{
+    padding-left: 28px;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.514);
+    margin-right:10px ;
+}
+.but{
+    background-color: rgba(0, 0, 255, 0.274);
+    border-radius: 30px;
+    margin-top: 8px;
+}
+.but:hover{
+    background-color: rgba(0, 0, 255, 0.418);}
+.val{
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    font-weight: 600;
+}
+.btn_change{
+    background-color: #ffffff52;
+    border-radius: 20px;
+    color: white;
+    margin-top: -30px;
+    margin-left: 20px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+.btn_change:hover{
+    background-color: #ffffff28;
+    color: white;
+}
+
+::placeholder {
+  color: grey;
+  font-size: 16px;
+}
+
+
+@media (max-width: 600px) {
+  ::placeholder {
+    font-size: 12px;
+  }
+}
+
+
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  ::placeholder {
+    font-size: 14px;
+  }
+}
+
+
+
+
+</style>
+<body>
+    
+<form class="form-inline" method="post">
+    {% csrf_token %}
+    <div class="form-group mx-sm-3 mb-2 d-flex justify-content-center  mt-3">
+        <input type="text" class="form-control w-25 seac" id="inputPassword2" placeholder="Search...." name="searches">
+        <button type="submit" class="btn btn-primary mb-2 but">Search</button>
+    </div>
+</form>
+<a href="{% url 'admin_page' %}" class="btn btn_change">Back</a>
+
+<div class="container">
+    {% if searched %}
+        <h4 class="val">You searched for "{{ searched }}"</h4>
+        <br>
+        {% if venue %}
+            {% for user in venue %}
+               <button class="link"><a href="{% url 'admin_page'%}" class="in">{{ user }}</a>  </button> 
+                <br><br>
+            {% endfor %}
+        {% else %}
+            <p>No users found.</p>
+        {% endif %}
+    {% else %}
+        <h4 class="val">You didn't enter anything ..</h4>
+    {% endif %}
+</div>
+</body>
+</html>
