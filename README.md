@@ -36,7 +36,7 @@ Ensure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/e_crypt.git
+   git clone https://github.com/RijoSLal/e_crypt.git
    cd e_crypt
    ```
 
